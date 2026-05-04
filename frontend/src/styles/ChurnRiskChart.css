@@ -1,0 +1,110 @@
+.churn-risk-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.no-prediction {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 16px;
+}
+
+.prediction-summary {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .prediction-summary {
+    flex-direction: column;
+  }
+}
+
+.risk-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.risk-badge {
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.risk-badge.high {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.risk-badge.medium {
+  background: linear-gradient(135deg, #f39c12, #d68910);
+}
+
+.risk-badge.low {
+  background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+.prediction-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item .label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.detail-item .value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.recommendation {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.recommendation p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.recommendation strong {
+  color: #667eea;
+}
+
+/* Recharts customization */
+.recharts-wrapper {
+  margin-top: 20px;
+}
