@@ -16,7 +16,7 @@ class DataPreprocessor:
     def load_data(self, filepath):
         """Load customer churn dataset"""
         df = pd.read_csv(filepath)
-        print(f"✓ Data loaded: {df.shape}")
+        print(f"[OK] Data loaded: {df.shape}")
         return df
     
     def feature_engineering(self, df):
@@ -48,7 +48,7 @@ class DataPreprocessor:
         # Payment delay indicator
         df['has_payment_delay'] = (df['payment_delay'] > 0).astype(int)
         
-        print("✓ Feature engineering completed")
+        print("[OK] Feature engineering completed")
         return df
     
     def encode_categorical(self, df, fit=True):
@@ -64,7 +64,7 @@ class DataPreprocessor:
             else:
                 df[col] = self.encoders[col].transform(df[col].astype(str))
         
-        print(f"✓ Categorical encoding completed for {len(categorical_cols)} features")
+        print(f"[OK] Categorical encoding completed for {len(categorical_cols)} features")
         return df
     
     def drop_unnecessary_columns(self, df):
@@ -75,7 +75,7 @@ class DataPreprocessor:
         cols_to_drop = [col for col in cols_to_drop if col in df.columns]
         df = df.drop(columns=cols_to_drop)
         
-        print(f"✓ Dropped {len(cols_to_drop)} unnecessary columns")
+        print(f"[OK] Dropped {len(cols_to_drop)} unnecessary columns")
         return df
     
     def scale_features(self, X, fit=True):
@@ -86,7 +86,7 @@ class DataPreprocessor:
             X_scaled = self.scaler.transform(X)
         
         X_scaled = pd.DataFrame(X_scaled, columns=X.columns)
-        print("✓ Feature scaling completed")
+        print("[OK] Feature scaling completed")
         return X_scaled
     
     def preprocess(self, df, test_size=0.2, random_state=42, fit=True):
@@ -117,8 +117,8 @@ class DataPreprocessor:
             X, y, test_size=test_size, random_state=random_state, stratify=y
         )
         
-        print(f"✓ Train-test split: Train {X_train.shape} | Test {X_test.shape}")
-        print(f"✓ Class distribution - Train: {y_train.value_counts().to_dict()} | Test: {y_test.value_counts().to_dict()}")
+        print(f"[OK] Train-test split: Train {X_train.shape} | Test {X_test.shape}")
+        print(f"[OK] Class distribution - Train: {y_train.value_counts().to_dict()} | Test: {y_test.value_counts().to_dict()}")
         
         return X_train, X_test, y_train, y_test
     
@@ -126,13 +126,13 @@ class DataPreprocessor:
         """Save preprocessor for later use"""
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         joblib.dump(self, filepath)
-        print(f"✓ Preprocessor saved to {filepath}")
+        print(f"[OK] Preprocessor saved to {filepath}")
     
     @staticmethod
     def load_preprocessor(filepath):
         """Load preprocessor"""
         preprocessor = joblib.load(filepath)
-        print(f"✓ Preprocessor loaded from {filepath}")
+        print(f"[OK] Preprocessor loaded from {filepath}")
         return preprocessor
 
 
@@ -155,4 +155,4 @@ if __name__ == "__main__":
     y_train.to_csv('../data/y_train.csv', index=False)
     y_test.to_csv('../data/y_test.csv', index=False)
     
-    print("\n✓ All preprocessing completed successfully!")
+    print("\n[OK] All preprocessing completed successfully!")

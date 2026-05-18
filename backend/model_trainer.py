@@ -30,7 +30,7 @@ class ChurnModelTrainer:
         lr.fit(X_train, y_train)
         self.models['Logistic Regression'] = lr
         
-        print("✓ Logistic Regression trained")
+        print("[OK] Logistic Regression trained")
         return lr
     
     def train_random_forest(self, X_train, y_train):
@@ -51,7 +51,7 @@ class ChurnModelTrainer:
         rf.fit(X_train, y_train)
         self.models['Random Forest'] = rf
         
-        print("✓ Random Forest trained")
+        print("[OK] Random Forest trained")
         return rf
     
     def train_gradient_boosting(self, X_train, y_train):
@@ -72,7 +72,7 @@ class ChurnModelTrainer:
         gb.fit(X_train, y_train)
         self.models['Gradient Boosting'] = gb
         
-        print("✓ Gradient Boosting trained")
+        print("[OK] Gradient Boosting trained")
         return gb
     
     def evaluate_model(self, model_name, model, X_test, y_test):
@@ -147,7 +147,7 @@ class ChurnModelTrainer:
         """Save best model"""
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         joblib.dump(self.best_model, filepath)
-        print(f"\n✓ Best model ({self.best_model_name}) saved to {filepath}")
+        print(f"\n[OK] Best model ({self.best_model_name}) saved to {filepath}")
     
     def save_results(self, filepath):
         """Save training results as JSON"""
@@ -168,7 +168,7 @@ class ChurnModelTrainer:
         with open(filepath, 'w') as f:
             json.dump(results_json, f, indent=4)
         
-        print(f"✓ Results saved to {filepath}")
+        print(f"[OK] Results saved to {filepath}")
     
     def get_model_info(self):
         """Get information about all trained models"""
@@ -196,4 +196,4 @@ if __name__ == "__main__":
     trainer.save_model('../models/churn_model.pkl')
     trainer.save_results('../models/model_results.json')
     
-    print("\n✓ Model training completed successfully!")
+    print("\n[OK] Model training completed successfully!")
